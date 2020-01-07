@@ -1,0 +1,26 @@
+[Breakpoint 0]
+Enabled=true
+File=asmmain_nodebuginfo.s
+Line=9
+Temporary=false
+
+[General]
+DebuggerCmdStr=
+DriverName=GDB
+FileVersion=1
+OptionsSelected=
+ProgramArgs=
+TTYLevel=7
+WorkingDirectory=
+
+[Memory]
+ColumnWidths=80,86
+Expression1=$esp
+Expression2=_x
+Expression3=$x
+Expression4=x
+Format1=19
+Format2=19
+Format3=19
+Format4=19
+NumExprs=4

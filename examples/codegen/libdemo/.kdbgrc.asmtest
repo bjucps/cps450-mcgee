@@ -1,0 +1,16 @@
+[Breakpoint 0]
+Enabled=true
+File=asmmain.s
+Line=9
+Temporary=false
+
+[General]
+DebuggerCmdStr=
+FileVersion=1
+ProgramArgs=
+TTYLevel=7
+WorkingDirectory=
+
+[Memory]
+ColumnWidths=80,62
+NumExprs=0

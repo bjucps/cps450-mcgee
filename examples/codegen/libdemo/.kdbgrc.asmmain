@@ -1,0 +1,20 @@
+[Breakpoint 0]
+Enabled=true
+File=asmmain.s
+Line=9
+Temporary=false
+
+[General]
+DebuggerCmdStr=
+DriverName=GDB
+FileVersion=1
+OptionsSelected=
+ProgramArgs=
+TTYLevel=7
+WorkingDirectory=
+
+[Memory]
+ColumnWidths=80,86
+Expression1=$esp
+Format1=19
+NumExprs=1

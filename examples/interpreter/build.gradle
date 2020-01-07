@@ -1,0 +1,17 @@
+
+apply plugin: 'java'
+apply plugin: 'application'
+apply plugin: 'antlr'
+
+mainClassName = 'cps450.Main'
+
+repositories {
+    jcenter()
+}
+
+generateGrammarSource {arguments += ["-visitor"]}
+
+dependencies {
+  testCompile 'junit:junit:4.12'
+  antlr       'org.antlr:antlr4:4.7.1'
+}
