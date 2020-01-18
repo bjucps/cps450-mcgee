@@ -1,9 +1,9 @@
-~ This is a comment
+# This is a comment
 
 type Point(_x: int, _name: string) :=
-    member x: int := _x                 ~ x coord
-    member name: string := _name        ~ identifier
-    member getname(): string := name    ~ getter for name
+    member x: int := _x                 # x coord
+    member name: string := _name        # identifier
+    member getname(): string := name    # getter for name
 end
 
 let start() :=
@@ -11,6 +11,6 @@ let start() :=
     printstring("Hey,\"Sue!\"" & point.getname())
 end
 
-% ~ The % is a bad token
+% # The % is a bad token
 let badstring: string := "Unterminated
 let badescape: string := "Hey\q"
