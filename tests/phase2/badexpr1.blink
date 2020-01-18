@@ -1,0 +1,20 @@
+#  badexpr1.blink
+
+type Test(_x: int, _y: int, _z: int) :=
+  member array1: int[] := new int[3] { 1, 2, 3 }
+  member x: int := _x
+  member y: int := _y
+  member z: int := _z
+  member calc(): int := array1[0] + array1[1] + array1[2]
+end
+
+let x := 3
+let y := x
+
+let test1 := new Test(x, y, x + y -)    # This line has an error, it leaves off a number at the end
+
+let x_1 := y * z / 4                    # expression -> expr binary-op expr (z undefined is okay for parsing)
+let y_1 := ~y                           # expression -> unary-op expr
+let z := (x + y                         # This line has an error, it leaves off a right parenthesis
+let y_2 := x + (y - x + (x + y))        # expression -> expr binary-op ( expr )
+

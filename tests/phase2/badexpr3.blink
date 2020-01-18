@@ -1,0 +1,7 @@
+# badexpr3.blink
+
+let start() :=
+    let a := (b>a)+(c=3)-((i<=j)+k)*-1                      # wrong negative sign
+    let x := y+j*3/4**4+3                                   # two mults
+    let x := y+((j*3/4)+(3+2)*(4+(3)))+(! 4)-(3 && 4))+z    # mismatched ()
+    false

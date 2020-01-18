@@ -1,0 +1,9 @@
+# badexpr2.blink
+
+let start() :=
+    let a := *c                  # is not a unary operator
+    let b := / c * 2 + 3         # cannot start with '/', again, not unary
+    let c := ((1+a)*b)+c)        # extra ')' on end
+    let d := c+*d/3/5*8*a*b+3    # the * before the d cannot be there with a '+'
+    let e := )3+4)*(1+b*c)       # the first ')' is the wrong way
+    true

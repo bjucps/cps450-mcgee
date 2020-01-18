@@ -1,0 +1,13 @@
+# goodtest2.blink
+
+type Main() :=
+  member start() :=
+    let x := new Frog()
+    let x := x.hi()
+    if ! (s = "") && ! (t = 26) then
+       true
+    end
+
+  member m2(a:int): boolean :=
+      true
+end

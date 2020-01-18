@@ -1,0 +1,15 @@
+# cptestbad.blink
+
+let start() :=
+    if x < 5 then
+      ~5 + 5 +
+    else
+      ! a || c
+    end
+
+let m2(a:int, b:string): boolean :=
+  if a > 3 then
+    true
+  else
+    false
+  end

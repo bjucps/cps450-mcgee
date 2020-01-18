@@ -1,0 +1,13 @@
+# goodtest1.blink
+
+type Main() :=
+  member r1: string := ""
+  member y := 3
+  member start() :=
+    let s := readstring()
+    loop while s.equals("") do
+      if ! s.equals("") then
+        s & ""
+      end
+    end
+end
