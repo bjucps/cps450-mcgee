@@ -1,7 +1,8 @@
 # This is a comment
   
-bool begin class else end false from if inherits int is loop new not string then true while
+bool do end false if int let loop member me new nil string then true type while
 asdf23 _asdf5 2af_2_   _
-1234 0 -326
-:= () [] , : . +-*/ & {} || &&
+1234 0 -326 ~42
+& + - * / && || ~ ! > >= < <= = :=
+( ) [ ] { } , : .
 %
