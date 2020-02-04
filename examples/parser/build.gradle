@@ -9,7 +9,15 @@ repositories {
     jcenter()
 }
 
+generateGrammarSource {
+  maxHeapSize = "64m"
+  arguments += ["-visitor"]
+}
+
+compileJava.dependsOn generateGrammarSource
+
 dependencies {
   testCompile 'junit:junit:4.12'
+  compile     'org.antlr:antlr4-runtime:4.7.2'
   antlr       'org.antlr:antlr4:4.7.1'
 }

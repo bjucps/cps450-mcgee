@@ -50,7 +50,7 @@ public class Main
         // Register my own error handler
         parser.addErrorListener(new MyTinyErrorListener());
         
-        TinyParser.StartContext tree = parser.start();
+        TinyParser.ProgramContext tree = parser.program();
         
         if (debugParser)
         	// Display graphical tree
