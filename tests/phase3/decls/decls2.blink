@@ -1,0 +1,13 @@
+#
+# decls2.blink
+# - errors, no arrays
+#
+
+type Test2(_x: int, _x: bool, _z: int) := # error: redeclared x
+  member x: int := _x
+  member y: bool := _y # error: _y not found
+  member z: int := _z
+end
+
+let x: int := 3 # not an error, Test1's x is not in scope any longer
+let t: Test2 := new Test2(x, true, tryme(3)) # error: undefined function tryme

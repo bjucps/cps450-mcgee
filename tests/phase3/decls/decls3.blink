@@ -1,0 +1,23 @@
+#
+# decls3.blink
+# - errors, no arrays
+#
+
+type Test3(_x: int, _y: bool, _z: int) :=
+  member x: int := _x
+  member y: bool := _y
+  member z: int := _z
+
+  member jump(height: int, headFirst: bool) :=
+    let headFirst: int := 0 # error: redefined headFirst
+    let y: int := 0 # error: redefined y
+    y + height # error: void return type but returning int
+
+  member fall(height: int, headFirst: bool) :int := # both okay, jump's scope is over
+    let curpos: int := 0
+    let jump: int := 0 # okay, does not conflict with jump method
+    curpos + jump
+end
+
+let x: int := 3 # not an error, Test1's x is not in scope any longer
+let t: Test3 := new Test3(x, true, x - 1)
