@@ -1,0 +1,15 @@
+# expr1ok.blink
+# Tests expression type checking
+
+type Expr1(n1: int, n2: int, b1: bool, b2: bool) :=
+  member v1: bool := b1
+  member v2: bool := b2
+  member v3: bool := true && (! b1)
+  member v4: int := 5 * 15 - 2
+  member v5: int := ~35 + 15 * n1 / n2
+  member v6: bool := b2
+  member v7: int := 5 * 2
+  member v8: bool := true
+  member v9: bool := false
+  member v10: bool := ! b1
+end
