@@ -1,0 +1,13 @@
+#
+# decls1.blink
+# - No errors, no arrays
+#
+
+type Test1(_x: int, _y: bool, _z: int) :=
+  member x: int := _x
+  member y: bool := _y
+  member z: int := _z
+end
+
+let x: int := 3 # not an error, Test1's x is not in scope any longer
+let t: Test1 := new Test1(x, true, x - 1)
