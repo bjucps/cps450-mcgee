@@ -1,0 +1,20 @@
+# Tests scalar type checking with method calls
+
+let b1: bool := false
+let i1: int := 0
+  
+let s1: string := ""
+  
+let boolmeth(x: int): bool :=
+  b1 || (x > 5)
+  
+let strmeth(): string :=
+  "Test"
+  
+let intmeth(x: int, s: string): int :=
+  x + 5
+  
+let b2 := boolmeth(5)
+let s2 := s1 & strmeth()
+let b3 := boolmeth(intmeth(3, s1))
+let b4 := boolmeth(intmeth(3, s1))

@@ -1,0 +1,14 @@
+#
+# stmt1ok.blink
+# - Tests semantics of loop statements
+#
+
+let test1(x: int): int :=
+  loop while true do
+    x + 1
+  end
+
+let test2(x: int): int :=
+  if false then
+    x - 1
+  end
