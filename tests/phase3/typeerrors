@@ -1,0 +1,26 @@
+# expr1.floyd
+# Tests expression type checking
+
+let n1: int := 0
+let n2: int := 0
+let b1: bool := false
+let b2: bool := false
+let b3: bool := false
+
+let b5: bool := false
+
+let i2: int := 3
+
+let b4 := b2
+let b6 := true && ! b1 || b2
+let n3 := 5 * 15 - 2
+let n4 := ~35 + 15 * n1 / n2
+  
+let b7: bool := n1      # ERROR: cannot assign int to boolean
+let b9 := 5 * b2        # ERROR: the * op can only be used with ints and reals
+let b9 := 5 * 3		    # ERROR: b2 cannot be assigned to an integer
+let n5 := 5 & 3		    # ERROR: the & bin op can only be used with strings
+let b10 := true + false	# ERROR: the + bin op cannot be used with booleans
+  
+let n6 := ~b2           # ERRROR: the - unary op cannot be used with a string
+let b11 := ! 13   	    # ERROR: not requires a boolean
