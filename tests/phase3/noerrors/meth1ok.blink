@@ -3,18 +3,18 @@
 let b1: bool := false
 let i1: int := 0
   
-let s1: string := ""
+let s1: string := "" # error: unsupported feature (but no other errors)
   
 let boolmeth(x: int): bool :=
   b1 || (x > 5)
   
-let strmeth(): string :=
+let strmeth(): string := # error: unsupported feature (but no other errors)
   "Test"
   
 let intmeth(x: int, s: string): int :=
   x + 5
   
 let b2 := boolmeth(5)
-let s2 := s1 & strmeth()
+let s2 := s1 & strmeth() # error: unsupported feature (but no other errors)
 let b3 := boolmeth(intmeth(3, s1))
 let b4 := boolmeth(intmeth(3, s1))
