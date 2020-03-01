@@ -1,0 +1,24 @@
+# test0.blink
+# Tests scalar type checking with assignment stmts
+
+let b1: bool := true
+let b2: bool := false
+let b3: bool := false
+
+let i1: int := 0
+let i2: int := 0
+let s1: string := "Hello"  # unsupported feature
+let s2: string := "World"
+
+let b4 := true
+let b5 := ! b1 && true
+let b6 := i1 > i2
+let b7: bool := 5          # type mismatch can't assign int to boolean
+let b8 := b1 >= true       # >= can't work on boolean
+
+let i3 := 10
+let i4 := 10 * i2 - i1
+let i5: int := false       # type mismatch can't assign boolean to int
+let i6 := 10 + i2 - b1     # type error can't subtract boolean from int
+
+let s3 := "hello" & s2     # unsupported feature

@@ -1,0 +1,23 @@
+# Tests scalar type checking with method calls
+
+let b1: bool := false
+let i1: int := 0
+
+let s1: string := "" # error: unsupported feature (but no other errors)
+
+let boolmeth(x: int): bool :=
+  b1 || (x > 5)
+
+let strmeth(): string :=
+  "Test"
+
+let intmeth(x: int, s: string): int :=
+  x + 5
+
+let b2 := boolmeth()         # ERROR: too few parms
+let b3 := boolmeth("hello")  # ERROR: wrong parm type
+let b4 := boolmeth(5, false, "hello") # ERROR: too many parms
+let b5 := boolmeth(true)     # ERROR: incompatible parameter types
+let i2: int := boolmeth(5)   # ERROR: incompatible types for assignment
+
+let s2 := s1 & strmeth()
