@@ -1,0 +1,57 @@
+plugins {
+    id 'java'
+    id 'antlr'
+}
+
+group 'com.company'
+version '1.0.0'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    antlr "org.antlr:antlr4:4.7.2"
+    compile "org.antlr:antlr4-runtime:4.7.2"
+    compile "commons-cli:commons-cli:1.4"
+    compile "commons-io:commons-io:2.6"
+    compileOnly 'org.projectlombok:lombok:1.18.10'
+    annotationProcessor 'org.projectlombok:lombok:1.18.10'
+    testCompile 'junit:junit:4.12'
+}
+
+generateGrammarSource {
+    maxHeapSize = "64m"
+    arguments += ["-visitor"]
+}
+
+compileJava.dependsOn generateGrammarSource
+
+sourceSets {
+    main {
+        java {
+            srcDir 'src/main/java'
+            srcDir 'src/main/antlr'
+        }
+    }
+    generated {
+        java.srcDir 'generated-src/antlr/'
+    }
+}
+
+compileJava.source sourceSets.generated.java, sourceSets.main.java
+
+clean {
+    delete "generated-src"
+}
+
+jar {
+    manifest {
+        attributes(
+                'Main-Class': 'com.company.Main'
+        )
+    }
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
