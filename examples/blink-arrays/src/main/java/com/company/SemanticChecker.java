@@ -2,32 +2,37 @@ package com.company;
 
 import org.antlr.v4.runtime.RuleContext;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
-public class SemanticChecker extends TestBaseVisitor<Type> {
+public class SemanticChecker extends TestBaseVisitor {
     private HashMap<RuleContext, Boolean> contexts = new HashMap<>();
 
     @Override
     public Type visitVar_decl(TestParser.Var_declContext ctx) {
-        return visit(ctx.variable());
+        return (Type) visit(ctx.variable());
     }
 
     @Override
     public Type visitDeclared_type(TestParser.Declared_typeContext ctx) {
-        return visit(ctx.type());
+        return (Type) visit(ctx.type());
     }
 
     @Override
-    public Type visitExpressions(TestParser.ExpressionsContext ctx) {
-        return null;
+    public List<TestParser.ExpressionContext> visitExpressions(TestParser.ExpressionsContext ctx) {
+        List<TestParser.ExpressionContext> expressions = new ArrayList<TestParser.ExpressionContext>();
+        expressions.add(ctx.first);
+        expressions.addAll(ctx.last);
+        return expressions;
     }
 
     @Override
     public Type visitVariable(TestParser.VariableContext ctx) {
         contexts.put(ctx.getRuleContext(), false);
-        Type lhs = visit(ctx.typ);
+        Type lhs = (Type) visit(ctx.typ);
         contexts.put(ctx.getRuleContext(), true);
-        Type rhs = visit(ctx.value);
+        Type rhs = (Type) visit(ctx.value);
         if (!lhs.equals(rhs)) {
             // print error here
             return Type.error;
@@ -37,7 +42,7 @@ public class SemanticChecker extends TestBaseVisitor<Type> {
 
     @Override
     public Type visitType(TestParser.TypeContext ctx) {
-        Type thing = visit(ctx.typ);
+        Type thing = (Type) visit(ctx.typ);
         boolean needSizes = contexts.get(ctx.getParent().getParent().getRuleContext());
         int dimensions = ctx.open.size();
         if (needSizes) {
@@ -78,11 +83,29 @@ public class SemanticChecker extends TestBaseVisitor<Type> {
 
     @Override
     public Type visitInt(TestParser.IntContext ctx) {
-        return null;
+        return Type.integer;
     }
 
     @Override
     public Type visitNew(TestParser.NewContext ctx) {
-        return null;
+        contexts.put(ctx.getRuleContext(), true);
+        Type child = (Type) visit(ctx.typ);
+        if(child.getDimensions() > 0 && !ctx.value.isEmpty()) {
+            //report error
+        }
+        if(child.getDimensions() == 0 && !ctx.init.isEmpty()) {
+            //report error
+        }
+        if(child.getDimensions() > 0 && !ctx.init.isEmpty()) {
+            child.setDimensions(child.getDimensions() - 1);
+            for(var otherChild : (List< TestParser.ExpressionContext>)visit(ctx.init)) {
+                Type typOC = (Type) visit(otherChild);
+                if(!child.equals(typOC)) {
+                    //report an error
+                }
+            }
+            child.setDimensions(child.getDimensions() + 1);
+        }
+        return child;
     }
 }
