@@ -18,7 +18,7 @@ let n4 := ~35 + 15 * n1 / n2
   
 let b7: bool := n1      # ERROR: cannot assign int to boolean
 let b9 := 5 * b2        # ERROR: the * op can only be used with ints and reals
-let b9 := 5 * 3		    # ERROR: b2 cannot be assigned to an integer
+let b9 := 5 * 3		    # ERROR: redeclaration of b9
 let n5 := 5 & 3		    # ERROR: the & bin op can only be used with strings
 let b10 := true + false	# ERROR: the + bin op cannot be used with booleans
   
