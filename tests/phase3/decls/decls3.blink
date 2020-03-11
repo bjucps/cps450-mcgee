@@ -11,7 +11,7 @@ type Test3(_x: int, _y: bool, _z: int) :=
   member jump(height: int, headFirst: bool) :=
     let headFirst: int := 0 # error: redefined headFirst
     let y: int := 0 # error: redefined y
-    y + height # error: void return type but returning int
+    y + height # causes jump to have a return type of int
 
   member fall(height: int, headFirst: bool) :int := # both okay, jump's scope is over
     let curpos: int := 0
