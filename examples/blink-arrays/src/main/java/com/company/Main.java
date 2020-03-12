@@ -12,5 +12,6 @@ public class Main {
         TestParser parser = new TestParser(commonTokenStream);
         var context = parser.start();
         new SemanticChecker().visit(context);
+        new CodeGenerator().visit(context);
     }
 }
