@@ -1,0 +1,16 @@
+# For positive number, prints 1\n9
+# For zero, prints 0\n9\n9
+# For negative number, prints -1\n9\n9
+
+let start() :=
+  let x := readint()
+  let first := if (x > 0) then
+    printint(1)
+  else
+    if (x = 0) then
+      printint(9 + printint(0))
+    else
+      printint(10 + printint(~1))
+    end
+  end
+  printint(9)
