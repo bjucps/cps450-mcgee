@@ -5,7 +5,7 @@ let start() :=
     let mov2 := printint(mov * ~1)        # prints -120
     let x := 0
     let y := 1
-    loop while ! (printint(x := x + 1) > (y := 2) + 1) do   # 1 -1 -2 2 -1 -2 3 -1 -2, incrementing x by 1, resetting y to 2 at start of loop!
+    loop while ! (printint(x := x + 1) > (y := 2) + 1) do   # 1 -1 -2 2 -1 -2 3 -1 -2 4, incrementing x by 1, resetting y to 2 at start of loop!
       loop while y > ~2 do
         if ! (y > 0) then
           printint(y := y - 1)
