@@ -1,0 +1,45 @@
+type Parent(x: int) :=
+  member kind := 0 # kind is 0 if Parent, 1 if Child
+
+  member foo() :=
+    printint(x)
+
+  member getX(): int :=
+    x
+
+  member setKind(k: int) :=
+    kind := k
+  
+  member getKind(): int :=
+    kind
+end
+
+class Child(x: int, y: int) inherits from Parent(x) :=
+  member setKind := me.setKind(1) # kind is 0 if Parent, 1 if Child
+
+  member getY(): int :=
+    y
+
+  member foo() :=
+    printint(me.getX()+y)
+end
+
+let goo(p: Parent) :=
+  let c: Child := nil
+  if (p.getKind() = 1) then
+    printint((c := p).getY()) # 20
+  end
+
+let start() :=
+  let c := new Child(10, 20)
+  let printC := c.foo()
+
+  let p := new Child(50, 80)
+  let printP := p.foo() # calls Child's foo()
+
+  let printGoo := goo(p)
+
+  let p2 := new Parent(50)
+  let printP2 := p.foo()
+
+  c := p  # should be permitted at compile time, but trigger error at runtime

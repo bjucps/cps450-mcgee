@@ -1,0 +1,19 @@
+type Parent(x: int) :=
+  member foo() :=
+    printint(x)
+
+  member getX(): int :=
+    x
+end
+
+type Child(x: int, y: int) inherits from Parent(x) :=
+  member getY(): int :=
+    y
+
+  member foo() :=
+    printint(me.getX()+y)
+end
+
+let start() :=
+  let c := new Child(10, 20)
+  c.foo()

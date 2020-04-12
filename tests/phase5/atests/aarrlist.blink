@@ -1,0 +1,136 @@
+type Employee(age: int) :=
+  member getClassName(): string :=
+    "Employee"
+
+  member getSalary(): int :=
+    age * 1000
+
+  member getAge(): int :=
+    age
+
+  member toString(): string :=
+    "I'm a " & me.getClassName() & " and I get paid " & me.getSalary() & ".\n"
+end
+
+type HourlyEmployee(age: int, hours: int, rate: int) inherits from Employee(age) :=
+  member getClassName(): string :=
+    "HourlyEmployee"
+
+  member getSalary(): int :=
+    hours * rate * me.getAge()
+end
+
+type SalariedEmployee(age: int, salary: int) inherits from Employee(age) :=
+  member getClassName(): string :=
+    "SalariedEmployee"
+
+  member getSalary(): int :=
+    salary * me.getAge()
+end
+
+type ListNode(initData: Employee) :=
+  member data: Employee := initData
+  member next: ListNode := nil
+
+  member getData(): Employee :=
+    data
+
+  member setData(newData: Employee): Employee :=
+    data := newData
+
+  member getNext(): ListNode :=
+    next
+
+  member setNext(node: ListNode) :=
+    next := node
+end
+
+type List() :=
+  member head: ListNode := nil
+
+  member add(item: Employee): List :=
+    let curnode: ListNode := head
+    let node: ListNode := new ListNode(item)
+    let last := if ! (head = nil) then
+      loop while ! (curnode.getNext() = nil) do
+        curnode := curnode.getNext()
+      end
+    end
+
+    let add := if head = nil then
+      head := node
+    else
+      last.setNext(node)
+    end
+    me
+
+  member get(index: int): Employee :=
+    let curNode := head
+    let last := if !(head = nil) then
+      loop while ((index := index - 1) >= 0) && ! (curNode.getNext() = nil) do
+        curNode := curNode.getNext()
+      end
+    end
+
+    if ! (curNode = nil) then
+      curNode.getData()
+    else
+      nil
+    end
+
+  member length(): int :=
+    let curNode := head
+    let i := 0
+    let last := loop while (i := i + 1) >= 0 && ! (curNode = nil) do
+      curNode := curNode.getNext()
+    end
+    i - 1
+
+  member remove(index: int) :=
+    let prevNode : ListNode := nil
+    let curNode := head
+    let last := loop while (index := index - 1) >= 0 && ! (curNode = nil) do
+      curNode := (prevNode := curNode).getNext()
+    end
+
+    if ! (curNode = nil) then
+      if prevNode = nil then
+        head := curNode.getNext()
+      else
+        prevNode.setNext(curNode.getNext())
+      end
+    end
+
+  member set(index: int, item: Employee) :=
+    let curNode := head
+    let last := loop while (index := index - 1) >= 0 && ! (curNode = nil) do
+      curNode := curNode.getNext()
+    end
+
+    if ! (curNode = nil) then
+      curNode.setData(item)
+    end
+
+  member print() :=
+    let curNode := head
+    let first := if !(curNode = nil) then
+        printstring(curNode.getData().toString())
+    end
+
+    loop while ! ((curNode := curNode.getNext()) = nil) do
+      printstring(curNode.getData().toString())
+    end
+end
+
+let start() :=
+  let list := new List()
+
+  let add1 := list.add(new Employee(30))
+  let add2 := list.add(new SalariedEmployee(30, 100))
+  let add3 := list.add(new HourlyEmployee(30, 10, 40))
+  let print1 := list.print()
+
+  let remove1 := list.remove(0)
+  let remove2 := list.remove(0)
+
+  list.print()

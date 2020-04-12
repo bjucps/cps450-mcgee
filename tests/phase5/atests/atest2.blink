@@ -1,0 +1,37 @@
+type Employee(age: int) :=
+  member getClassName(): string :=
+    "Employee"
+
+  member getSalary(): int :=
+    age * 1000
+
+  member getAge(): int :=
+    age
+
+  member toString(): string :=
+    "I'm a " & me.getClassName() & " and I get paid " & me.getSalary() & ".\n"
+end
+
+type HourlyEmployee(age: int, hours: int, rate: int) inherits from Employee(age) :=
+  member getClassName(): string :=
+    "HourlyEmployee"
+
+  member getSalary(): int :=
+    hours * rate * me.getAge()
+end
+
+type SalariedEmployee(age: int, salary: int) inherits from Employee(age) :=
+  member getClassName(): string :=
+    "SalariedEmployee"
+
+  member getSalary(): int :=
+    salary * me.getAge()
+end
+
+let start() :=
+  let emp := new Employee(30)
+
+  let o := new SalariedEmployee(30, 100)
+  let assign1 := emp := o # Should be permitted
+
+  o := new Employee(30) # should fail at runtime
