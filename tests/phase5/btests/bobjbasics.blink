@@ -1,0 +1,30 @@
+type Point(x: int, y: int) :=
+  member getX(): int :=
+    x
+
+  member getY(): int :=
+    y
+
+  member print() :=
+    let z := printint(x)
+    printint(y)
+
+  member setX(newX: int) :=
+    x := newX
+
+  member setY(newY: int) :=
+    y := newY
+end
+
+let start() :=
+  let p1 := new Point(5, 10)
+  let p2 := new Point(100, 200)  # another way of instantiating
+    
+  let test1 := p1.print()
+  let test2 := p2.print()
+    
+  let setX := p1.setX(~5)
+
+  let test3 := p1.print()
+  let test4 := p2.print()
+  false

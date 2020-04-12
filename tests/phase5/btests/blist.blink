@@ -1,0 +1,116 @@
+type ListNode(initData: int) :=
+  member data: int := initData
+  member next: ListNode := nil
+  
+  member getData(): int :=
+    data
+
+  member setData(newData: int): int :=
+    data := newData
+
+  member getNext(): ListNode :=
+    next
+  
+  member setNext(node: ListNode) :=
+    next := node
+end
+
+type List() :=
+  member head: ListNode := nil
+  
+  member add(item: int): List :=
+    let curnode: ListNode := head
+    let node: ListNode := new ListNode(item)
+    let last := if ! (head = nil) then
+      loop while ! (curnode.getNext() = nil) do
+        curnode := curnode.getNext()
+      end
+    end
+
+    let add := if head = nil then
+      head := node
+    else
+      last.setNext(node)
+    end
+    me
+  
+  member get(index: int): int :=
+    let curNode := head
+    let last := if !(head = nil) then
+      loop while ((index := index - 1) >= 0) && ! (curNode.getNext() = nil) do
+        curNode := curNode.getNext()
+      end
+    end
+    
+    if ! (curNode = nil) then
+      curNode.getData()
+    else
+      ~1
+    end
+  
+  member length(): int :=
+    let curNode := head
+    let i := 0
+    let last := loop while (i := i + 1) >= 0 && ! (curNode = nil) do
+      curNode := curNode.getNext()
+    end
+    i - 1
+  
+  member remove(index: int) :=
+    let prevNode : ListNode := nil
+    let curNode := head
+    let last := loop while (index := index - 1) >= 0 && ! (curNode = nil) do
+      curNode := (prevNode := curNode).getNext()
+    end
+    
+    if ! (curNode = nil) then
+      if prevNode = nil then
+        head := curNode.getNext()
+      else
+        prevNode.setNext(curNode.getNext())
+      end
+    end
+  
+  member set(index: int, item: int) :=
+    let curNode := head
+    let last := loop while (index := index - 1) >= 0 && ! (curNode = nil) do
+      curNode := curNode.getNext()
+    end
+    
+    if ! (curNode = nil) then
+      curNode.setData(item)
+    end
+  
+  member print() :=
+    let curNode := head
+    let first := if !(curNode = nil) then
+        printint(curNode.getData())
+    end
+    
+    loop while ! ((curNode := curNode.getNext()) = nil) do
+      printint(curNode.getData())
+    end
+end
+  
+let assert(cond: bool, linenum: int) :=
+  if ! cond then
+    printint(linenum) + (2 / 0) # force program to quit
+  end
+
+let start() :=
+  let startLine := 101
+  let list := new List().add(20).add(30)
+    
+  let test1 := assert(list.get(0) = 10, startLine + 3)
+  let test2 := assert(list.get(2) = 30, startLine + 4)
+  let test3 := assert(list.get(3) = ~1, startLine + 5)
+    
+  let more := list.add(40).add(50)
+  let test4 := assert(list.get(4) = 50, startLine + 8)
+    
+  let kill := list.remove(2)
+  let change := list.set(2, 5)
+
+  let test5 := assert(list.get(2) = 5, startLine + 13)
+  let test6 := assert(list.get(3) = 50, startLine + 14)
+  false

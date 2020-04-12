@@ -1,0 +1,28 @@
+type Point(x: int, y: int) :=
+  member getX(): int :=
+    x
+  
+  member getY(): int :=
+    y
+  
+  member print() :=
+    let z := printint(x)
+    printint(y)
+
+  member setX(newX: int) :=
+    x := newX
+  
+  member setY(newY: int) :=
+    y := newY
+end
+
+let doit(p: Point) :=
+  p.print() # null pointer exception occurs when called from line 26
+
+let start() :=
+  let p1 := new Point(5, 10)
+  let p2: Point := nil
+    
+  let test1 := doit(p1)
+  let test2 := doit(p2)
+  false

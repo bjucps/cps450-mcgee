@@ -1,0 +1,23 @@
+let start() :=
+  let prompt := printstring("Enter a string of characters:")
+  let s := readstring()
+  let len := getlength(s)
+
+  let firstCh := getchar(s, 0)
+    
+  let out1 := printstring("s has " & len & " characters.\n") # concatenating ints and strings is okay!
+  let out2 := printstring("charAt(0) = '" & firstCh & "'\n")
+
+  let comp1 := if s > " " then
+       printstring("s > ' '\n")
+    else
+       printstring("! s > ' '\n")
+    end
+  
+  let comp2 := if s >= " " then
+      printstring("s >= ' '\n")
+    else
+       printstring("! s >= ' '\n")
+    end
+        
+  printstring("wowsers!")
