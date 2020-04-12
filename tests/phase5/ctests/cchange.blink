@@ -1,0 +1,13 @@
+let ComputeChange(amt: int, denom: int): int :=
+  amt / denom
+
+let ComputeRemain(amt: int, denom: int, qtydenom: int): int :=
+  amt - denom * qtydenom
+
+let start() :=
+  let amt := readint()
+  let quarters := printint(ComputeChange(amt, 25))
+  let dimes := printint(ComputeChange((amt := ComputeRemain(amt, 25, quarters)), 10))
+  let nickels := printint(ComputeChange((amt := ComputeRemain(amt, 10, dimes)), 5))
+  let pennies := printint(ComputeRemain(amt, 5, nickels))
+  true

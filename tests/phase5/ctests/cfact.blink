@@ -1,0 +1,16 @@
+let fact(num: int): int :=
+  if num = 0 then
+    1
+  else
+    num * fact(num - 1)
+  end
+
+let go() :=
+  let input :int := 0
+  loop while ! (input >= 1) do
+    input := readint()
+  end
+ 
+let start() :=
+    printint(fact(printint(go())))
+

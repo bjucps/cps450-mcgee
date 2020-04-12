@@ -1,0 +1,12 @@
+let fact(num: int): int :=
+  let answer := 1
+  let result := loop while (num := num - 1) >= 0 do
+    answer := answer * (num + 1)
+  end
+  printint(0 + result - result)
+
+let start() :=
+  let num := readint()
+  if num > 0 then
+    printint(fact(num))
+  end
