@@ -60,14 +60,14 @@ type List() :=
     let add := if head = nil then
       head := node
     else
-      last.setNext(node)
+      curNode.setNext(node)
     end
     me
 
   member get(index: int): Employee :=
     let curNode := head
     let last := if !(head = nil) then
-      loop while ((index := index - 1) >= 0) && ! (curNode.getNext() = nil) do
+      loop while ((index := index - 1) >= 0) && ! (curNode = nil) do
         curNode := curNode.getNext()
       end
     end
