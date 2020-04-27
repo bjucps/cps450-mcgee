@@ -60,7 +60,7 @@ type List() :=
     let add := if head = nil then
       head := node
     else
-      curNode.setNext(node)
+      curnode.setNext(node)
     end
     me
 
