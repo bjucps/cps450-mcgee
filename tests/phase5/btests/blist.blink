@@ -99,7 +99,7 @@ let assert(cond: bool, linenum: int) :=
 
 let start() :=
   let startLine := 101
-  let list := new List().add(20).add(30)
+  let list := new List().add(10).add(20).add(30)
     
   let test1 := assert(list.get(0) = 10, startLine + 3)
   let test2 := assert(list.get(2) = 30, startLine + 4)
