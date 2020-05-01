@@ -1,6 +1,5 @@
 # courtesy of Elias Watson
 
-# Get input string
 let tmp1 := printstring("Input: ")
 let input := readstring()
 
@@ -12,7 +11,7 @@ let start() :=
     let i := ~1
     let len := getlength(input)
     let tmp3 := loop while (i := i + 1) < len do
-        input := setchar(input, i, getchar(input, i) + shift)
+        setchar(input, i, getchar(input, i) + shift)
     end
     let tmp4 := printstring(input)
     printchar(10) # Newline
