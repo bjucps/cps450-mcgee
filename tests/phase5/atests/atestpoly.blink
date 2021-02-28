@@ -14,7 +14,7 @@ type Parent(x: int) :=
     kind
 end
 
-class Child(x: int, y: int) inherits from Parent(x) :=
+type Child(x: int, y: int) inherits from Parent(x) :=
   member setKind := me.setKind(1) # kind is 0 if Parent, 1 if Child
 
   member getY(): int :=
