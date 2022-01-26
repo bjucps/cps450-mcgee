@@ -1,13 +1,14 @@
-
-apply plugin: 'java'
-apply plugin: 'application'
-apply plugin: 'antlr'
-
-mainClassName = 'cps450.Main'
+plugins {
+    id 'java'
+    id 'antlr'
+    id 'application'
+}
 
 repositories {
-    jcenter()
+    mavenCentral()
 }
+
+mainClassName = 'cps450.Main'
 
 generateGrammarSource {
   maxHeapSize = "64m"
@@ -17,7 +18,7 @@ generateGrammarSource {
 compileJava.dependsOn generateGrammarSource
 
 dependencies {
-  testCompile 'junit:junit:4.12'
-  compile     'org.antlr:antlr4-runtime:4.7.2'
-  antlr       'org.antlr:antlr4:4.7.1'
+    antlr 'org.antlr:antlr4:4.7.2'
+    implementation 'org.antlr:antlr4-runtime:4.7.2'
+    testImplementation 'junit:junit:4.12'
 }
