@@ -30,7 +30,7 @@ start:
 	pushq	$1 # visit ExpressionNode.Bool
 	popq	-72(%rbp)
 # visit DeclarationNode.VariableDeclaration 
-	pushq	$1 # visit ExpressionNode.Bool
+	pushq	$0 # visit ExpressionNode.Bool
 	popq	-80(%rbp)
 # visit DeclarationNode.VariableDeclaration 
 # visit ExpressionNode.Not 
