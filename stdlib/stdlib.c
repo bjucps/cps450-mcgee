@@ -1,7 +1,7 @@
 #include <syscall.h>
 
 
-int printint(int num) {
+long long int printint(long long int num) {
   char buf[20];
   char result[20] = "0\n";
   char *pos = buf;
